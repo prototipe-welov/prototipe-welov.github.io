@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Website Sekolah</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto"><!-- Navigation -->
+   <nav id="navbar" class="w-full py-4 px-6 fixed top-0 left-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+     <div class="flex items-center space-x-3">
+      <div id="school-logo" class="w-12 h-12 rounded-full flex items-center justify-center text-2xl">
+       🎓
+      </div>
+      <div>
+       <h1 id="school-name" class="font-bold text-xl">Lorem Ipsum Dolor</h1>
+       <p id="school-tagline" class="text-sm opacity-90">Consectetur Adipiscing Elite</p>
+      </div>
+     </div>
+     <div class="hidden md:flex space-x-6"><a href="#home" class="nav-link font-medium">Beranda</a> <a href="#about" class="nav-link font-medium">Tentang</a> <a href="#programs" class="nav-link font-medium">Program</a> <a href="#contact" class="nav-link font-medium">Kontak</a>
+     </div><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4"><a href="#home" class="block py-2 font-medium">Beranda</a> <a href="#about" class="block py-2 font-medium">Tentang</a> <a href="#programs" class="block py-2 font-medium">Program</a> <a href="#contact" class="block py-2 font-medium">Kontak</a>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="w-full min-h-screen flex items-center justify-center px-6 pt-24">
+    <div class="max-w-7xl w-full text-center">
+     <div class="mb-8">
+      <svg class="w-24 h-24 mx-auto mb-6" viewbox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="3" fill="none" /> <path d="M50 20 L50 50 L70 60" stroke="currentColor" stroke-width="3" stroke-linecap="round" /> <circle cx="50" cy="50" r="4" fill="currentColor" />
+      </svg>
+     </div>
+     <h2 id="hero-title" class="mb-6 font-bold">Lorem Ipsum Dolor Sit Amet</h2>
+     <p id="hero-subtitle" class="mb-8 max-w-2xl mx-auto">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+     <div class="flex justify-center gap-4 flex-wrap"><button id="cta-primary" class="px-8 py-3 rounded-lg font-semibold transition-all duration-300"> Daftar Sekarang </button> <button id="cta-secondary" class="px-8 py-3 rounded-lg font-semibold transition-all duration-300"> Pelajari Lebih Lanjut </button>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="w-full py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="about-title" class="text-center mb-12 font-bold">Dolor Sit Amet Consectetur</h2>
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+       <svg class="w-full h-auto" viewbox="0 0 400 300" fill="none"><rect x="50" y="50" width="300" height="200" rx="10" fill="currentColor" opacity="0.1" /> <rect x="80" y="80" width="80" height="80" rx="5" fill="currentColor" opacity="0.3" /> <rect x="180" y="80" width="80" height="80" rx="5" fill="currentColor" opacity="0.3" /> <rect x="280" y="80" width="40" height="80" rx="5" fill="currentColor" opacity="0.3" /> <rect x="80" y="180" width="240" height="50" rx="5" fill="currentColor" opacity="0.2" />
+       </svg>
+      </div>
+      <div>
+       <p id="about-text" class="mb-6 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+       <div class="grid grid-cols-3 gap-6 mt-8">
+        <div class="text-center">
+         <div class="text-3xl font-bold mb-2">
+          25+
+         </div>
+         <div class="text-sm opacity-75">
+          Tahun Berpengalaman
+         </div>
+        </div>
+        <div class="text-center">
+         <div class="text-3xl font-bold mb-2">
+          1000+
+         </div>
+         <div class="text-sm opacity-75">
+          Siswa Aktif
+         </div>
+        </div>
+        <div class="text-center">
+         <div class="text-3xl font-bold mb-2">
+          50+
+         </div>
+         <div class="text-sm opacity-75">
+          Guru Profesional
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Programs Section -->
+   <section id="programs" class="w-full py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="programs-title" class="text-center mb-12 font-bold">Excepteur Sint Occaecat</h2>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="card-hover rounded-xl p-8 text-center">
+       <div class="text-5xl mb-4">
+        📚
+       </div>
+       <h3 class="text-xl font-semibold mb-3">Kurikulum Merdeka</h3>
+       <p class="opacity-75">Pembelajaran yang berfokus pada pengembangan kompetensi dan karakter siswa</p>
+      </div>
+      <div class="card-hover rounded-xl p-8 text-center">
+       <div class="text-5xl mb-4">
+        ��
+       </div>
+       <h3 class="text-xl font-semibold mb-3">Ekstrakurikuler</h3>
+       <p class="opacity-75">Berbagai pilihan kegiatan untuk mengembangkan bakat dan minat siswa</p>
+      </div>
+      <div class="card-hover rounded-xl p-8 text-center">
+       <div class="text-5xl mb-4">
+        💻
+       </div>
+       <h3 class="text-xl font-semibold mb-3">Laboratorium Digital</h3>
+       <p class="opacity-75">Fasilitas teknologi modern untuk pembelajaran abad 21</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="w-full py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="contact-title" class="text-center mb-12 font-bold">Cupidatat Non Proident</h2>
+     <div class="grid md:grid-cols-2 gap-12">
+      <div class="space-y-6">
+       <div class="flex items-start space-x-4">
+        <div class="text-3xl">
+         📍
+        </div>
+        <div>
+         <h3 class="font-semibold mb-2">Alamat</h3>
+         <p id="school-address" class="opacity-75">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+        </div>
+       </div>
+       <div class="flex items-start space-x-4">
+        <div class="text-3xl">
+         📞
+        </div>
+        <div>
+         <h3 class="font-semibold mb-2">Telepon</h3>
+         <p id="school-phone" class="opacity-75">Ut enim ad minim veniam</p>
+        </div>
+       </div>
+       <div class="flex items-start space-x-4">
+        <div class="text-3xl">
+         ✉️
+        </div>
+        <div>
+         <h3 class="font-semibold mb-2">Email</h3>
+         <p id="school-email" class="opacity-75">quis@nostrud.exercitation</p>
+        </div>
+       </div>
+      </div>
+      <form id="contact-form" class="space-y-4"><input type="text" placeholder="Lorem Ipsum" class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-opacity-50 transition-colors"> <input type="email" placeholder="Dolor Sit" class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-opacity-50 transition-colors"> <textarea placeholder="Consectetur Adipiscing" rows="4" class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:border-opacity-50 transition-colors"></textarea> <button type="submit" class="w-full py-3 rounded-lg font-semibold transition-all duration-300"> Eiusmod Tempor </button>
+      </form>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="w-full py-8 px-6 text-center">
+    <div class="max-w-7xl mx-auto">
+     <p class="opacity-75">© 2024 Lorem Ipsum Dolor. Sunt in culpa qui officia deserunt mollit anim.</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+        const defaultConfig = {
+            background_color: '#f8f9fa',
+            surface_color: '#ffffff',
+            text_color: '#2d3748',
+            primary_action_color: '#667eea',
+            secondary_action_color: '#4a5568',
+            font_family: 'Poppins',
+            font_size: 16,
+            school_name: 'Lorem Ipsum Dolor',
+            school_tagline: 'Consectetur Adipiscing Elite',
+            hero_title: 'Lorem Ipsum Dolor Sit Amet',
+            hero_subtitle: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+            about_title: 'Dolor Sit Amet Consectetur',
+            about_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+            programs_title: 'Excepteur Sint Occaecat',
+            contact_title: 'Cupidatat Non Proident',
+            school_address: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+            school_phone: 'Ut enim ad minim veniam',
+            school_email: 'quis@nostrud.exercitation'
+        };
+
+        async function onConfigChange(config) {
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+            const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+            const fontFamily = config.font_family || defaultConfig.font_family;
+            const baseFontSize = config.font_size || defaultConfig.font_size;
+
+            const app = document.getElementById('app');
+            app.style.backgroundColor = backgroundColor;
+            app.style.color = textColor;
+            app.style.fontFamily = `${fontFamily}, sans-serif`;
+
+            const navbar = document.getElementById('navbar');
+            navbar.style.backgroundColor = primaryColor;
+            navbar.style.color = '#ffffff';
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.style.color = '#ffffff';
+            });
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            mobileMenuBtn.style.color = '#ffffff';
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.style.color = '#ffffff';
+            });
+
+            const schoolLogo = document.getElementById('school-logo');
+            schoolLogo.style.backgroundColor = '#ffffff';
+            schoolLogo.style.color = primaryColor;
+
+            document.getElementById('school-name').textContent = config.school_name || defaultConfig.school_name;
+            document.getElementById('school-tagline').textContent = config.school_tagline || defaultConfig.school_tagline;
+
+            const heroSection = document.getElementById('home');
+            heroSection.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+            heroSection.style.color = '#ffffff';
+
+            const heroSvg = heroSection.querySelector('svg');
+            heroSvg.style.color = '#ffffff';
+
+            document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+            document.getElementById('hero-title').style.fontSize = `${baseFontSize * 2.5}px`;
+
+            document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+            document.getElementById('hero-subtitle').style.fontSize = `${baseFontSize * 1.125}px`;
+
+            const ctaPrimary = document.getElementById('cta-primary');
+            ctaPrimary.style.backgroundColor = '#ffffff';
+            ctaPrimary.style.color = primaryColor;
+
+            const ctaSecondary = document.getElementById('cta-secondary');
+            ctaSecondary.style.backgroundColor = 'transparent';
+            ctaSecondary.style.color = '#ffffff';
+            ctaSecondary.style.border = '2px solid #ffffff';
+
+            const aboutSection = document.getElementById('about');
+            aboutSection.style.backgroundColor = surfaceColor;
+
+            document.getElementById('about-title').textContent = config.about_title || defaultConfig.about_title;
+            document.getElementById('about-title').style.fontSize = `${baseFontSize * 2}px`;
+            document.getElementById('about-title').style.color = textColor;
+
+            document.getElementById('about-text').textContent = config.about_text || defaultConfig.about_text;
+            document.getElementById('about-text').style.fontSize = `${baseFontSize}px`;
+            document.getElementById('about-text').style.color = textColor;
+
+            const aboutSvg = aboutSection.querySelector('svg');
+            aboutSvg.style.color = primaryColor;
+
+            const programsSection = document.getElementById('programs');
+            programsSection.style.backgroundColor = backgroundColor;
+
+            document.getElementById('programs-title').textContent = config.programs_title || defaultConfig.programs_title;
+            document.getElementById('programs-title').style.fontSize = `${baseFontSize * 2}px`;
+            document.getElementById('programs-title').style.color = textColor;
+
+            const programCards = programsSection.querySelectorAll('.card-hover');
+            programCards.forEach(card => {
+                card.style.backgroundColor = surfaceColor;
+                card.style.color = textColor;
+            });
+
+            const contactSection = document.getElementById('contact');
+            contactSection.style.backgroundColor = surfaceColor;
+
+            document.getElementById('contact-title').textContent = config.contact_title || defaultConfig.contact_title;
+            document.getElementById('contact-title').style.fontSize = `${baseFontSize * 2}px`;
+            document.getElementById('contact-title').style.color = textColor;
+
+            document.getElementById('school-address').textContent = config.school_address || defaultConfig.school_address;
+            document.getElementById('school-phone').textContent = config.school_phone || defaultConfig.school_phone;
+            document.getElementById('school-email').textContent = config.school_email || defaultConfig.school_email;
+
+            const contactForm = document.getElementById('contact-form');
+            const formInputs = contactForm.querySelectorAll('input, textarea');
+            formInputs.forEach(input => {
+                input.style.borderColor = primaryColor;
+                input.style.color = textColor;
+            });
+
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            submitButton.style.backgroundColor = primaryColor;
+            submitButton.style.color = '#ffffff';
+
+            const footer = document.querySelector('footer');
+            footer.style.backgroundColor = secondaryColor;
+            footer.style.color = '#ffffff';
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            config.background_color = value;
+                            window.elementSdk.setConfig({ background_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            config.surface_color = value;
+                            window.elementSdk.setConfig({ surface_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            config.text_color = value;
+                            window.elementSdk.setConfig({ text_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            config.primary_action_color = value;
+                            window.elementSdk.setConfig({ primary_action_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            config.secondary_action_color = value;
+                            window.elementSdk.setConfig({ secondary_action_color: value });
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: {
+                    get: () => config.font_family || defaultConfig.font_family,
+                    set: (value) => {
+                        config.font_family = value;
+                        window.elementSdk.setConfig({ font_family: value });
+                    }
+                },
+                fontSizeable: {
+                    get: () => config.font_size || defaultConfig.font_size,
+                    set: (value) => {
+                        config.font_size = value;
+                        window.elementSdk.setConfig({ font_size: value });
+                    }
+                }
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ['school_name', config.school_name || defaultConfig.school_name],
+                ['school_tagline', config.school_tagline || defaultConfig.school_tagline],
+                ['hero_title', config.hero_title || defaultConfig.hero_title],
+                ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+                ['about_title', config.about_title || defaultConfig.about_title],
+                ['about_text', config.about_text || defaultConfig.about_text],
+                ['programs_title', config.programs_title || defaultConfig.programs_title],
+                ['contact_title', config.contact_title || defaultConfig.contact_title],
+                ['school_address', config.school_address || defaultConfig.school_address],
+                ['school_phone', config.school_phone || defaultConfig.school_phone],
+                ['school_email', config.school_email || defaultConfig.school_email]
+            ]);
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            
+            // Create success message
+            const successMsg = document.createElement('div');
+            successMsg.className = 'mt-4 p-4 rounded-lg text-center font-medium';
+            successMsg.style.backgroundColor = '#d4edda';
+            successMsg.style.color = '#155724';
+            successMsg.style.border = '1px solid #c3e6cb';
+            successMsg.textContent = 'Lorem ipsum dolor sit amet! Consectetur adipiscing elit sed do eiusmod.';
+            
+            contactForm.appendChild(successMsg);
+            contactForm.reset();
+            
+            setTimeout(() => {
+                successMsg.remove();
+            }, 5000);
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c86fbb2b7b1d47b',t:'MTc3MDE3NDcxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  </html>
