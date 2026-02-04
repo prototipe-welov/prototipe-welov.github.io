@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template E-Commerce</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        
+        .icon-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .category-chip {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .category-chip:hover {
+            transform: translateY(-2px);
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto"><!-- Navigation -->
+   <nav id="navbar" class="w-full py-4 px-6 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+     <div class="flex items-center space-x-3">
+      <div class="text-3xl">
+       🛍️
+      </div>
+      <div>
+       <h1 id="store-name" class="font-bold text-xl">ShopHub</h1>
+       <p id="store-tagline" class="text-xs opacity-75">Belanja Mudah &amp; Cepat</p>
+      </div>
+     </div>
+     <div class="hidden md:flex items-center space-x-6"><a href="#home" class="font-medium hover:opacity-75 transition-opacity">Beranda</a> <a href="#products" class="font-medium hover:opacity-75 transition-opacity">Produk</a> <a href="#features" class="font-medium hover:opacity-75 transition-opacity">Fitur</a> <a href="#newsletter" class="font-medium hover:opacity-75 transition-opacity">Newsletter</a>
+     </div>
+     <div class="flex items-center space-x-4"><button class="icon-btn p-2 rounded-lg">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+       </svg></button> <button id="cart-btn" class="icon-btn p-2 rounded-lg relative">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+       </svg><span id="cart-count" class="cart-badge">0</span> </button> <button class="md:hidden icon-btn p-2 rounded-lg">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+       </svg></button>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="w-full py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+       <h2 id="hero-title" class="font-bold mb-6">Temukan Produk Terbaik untuk Anda</h2>
+       <p id="hero-subtitle" class="mb-8 opacity-75 leading-relaxed">Koleksi produk pilihan dengan kualitas terjamin, harga terjangkau, dan pengiriman cepat ke seluruh Indonesia</p><button id="hero-cta-btn" class="px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center space-x-2"> <span id="hero-cta">Mulai Belanja</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg></button>
+      </div>
+      <div class="relative">
+       <svg class="w-full h-auto" viewbox="0 0 500 400" fill="none"><circle cx="250" cy="200" r="150" fill="currentColor" opacity="0.1" /> <rect x="150" y="120" width="200" height="160" rx="12" fill="currentColor" opacity="0.2" /> <rect x="180" y="150" width="60" height="80" rx="8" fill="currentColor" opacity="0.3" /> <rect x="260" y="150" width="60" height="80" rx="8" fill="currentColor" opacity="0.3" /> <circle cx="210" cy="260" r="8" fill="currentColor" opacity="0.4" /> <circle cx="250" cy="260" r="8" fill="currentColor" opacity="0.4" /> <circle cx="290" cy="260" r="8" fill="currentColor" opacity="0.4" />
+       </svg>
+      </div>
+     </div>
+    </div>
+   </section><!-- Categories -->
+   <section class="w-full py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="flex flex-wrap gap-3 justify-center"><button class="category-chip px-6 py-3 rounded-full font-medium"> 🎧 Elektronik </button> <button class="category-chip px-6 py-3 rounded-full font-medium"> 👕 Fashion </button> <button class="category-chip px-6 py-3 rounded-full font-medium"> 🏠 Rumah Tangga </button> <button class="category-chip px-6 py-3 rounded-full font-medium"> 📚 Buku </button> <button class="category-chip px-6 py-3 rounded-full font-medium"> ⚽ Olahraga </button>
+     </div>
+    </div>
+   </section><!-- Products Section -->
+   <section id="products" class="w-full py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 id="products-title" class="font-bold mb-4">Produk Unggulan</h2>
+      <p class="opacity-75">Pilihan terbaik minggu ini</p>
+     </div>
+     <div id="products-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Product cards will be generated by JavaScript -->
+     </div>
+    </div>
+   </section><!-- Features Section -->
+   <section id="features" class="w-full py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+     <h2 id="features-title" class="text-center font-bold mb-12">Mengapa Belanja di Sini?</h2>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center p-6">
+       <div class="text-5xl mb-4">
+        🚚
+       </div>
+       <h3 class="font-semibold text-xl mb-3">Pengiriman Cepat</h3>
+       <p class="opacity-75">Gratis ongkir untuk pembelian di atas Rp 100.000</p>
+      </div>
+      <div class="text-center p-6">
+       <div class="text-5xl mb-4">
+        💳
+       </div>
+       <h3 class="font-semibold text-xl mb-3">Pembayaran Aman</h3>
+       <p class="opacity-75">Berbagai metode pembayaran terpercaya</p>
+      </div>
+      <div class="text-center p-6">
+       <div class="text-5xl mb-4">
+        🔄
+       </div>
+       <h3 class="font-semibold text-xl mb-3">Garansi Uang Kembali</h3>
+       <p class="opacity-75">30 hari garansi untuk semua produk</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Newsletter Section -->
+   <section id="newsletter" class="w-full py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center rounded-2xl p-12">
+     <h2 id="newsletter-title" class="font-bold mb-4">Dapatkan Penawaran Khusus</h2>
+     <p id="newsletter-text" class="mb-8 opacity-90">Berlangganan newsletter kami dan dapatkan diskon hingga 20% untuk pembelian pertama Anda</p>
+     <form id="newsletter-form" class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto"><input type="email" placeholder="Masukkan email Anda" required class="flex-1 px-6 py-4 rounded-lg border-2 focus:outline-none transition-colors"> <button type="submit" class="px-8 py-4 rounded-lg font-semibold transition-all duration-300 whitespace-nowrap"> Berlangganan </button>
+     </form>
+    </div>
+   </section><!-- Footer -->
+   <footer class="w-full py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+       <h3 class="font-bold mb-4">ShopHub</h3>
+       <p class="opacity-75 text-sm">Platform belanja online terpercaya dengan produk berkualitas</p>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4">Perusahaan</h4>
+       <ul class="space-y-2 text-sm opacity-75">
+        <li><a href="#" class="hover:opacity-100">Tentang Kami</a></li>
+        <li><a href="#" class="hover:opacity-100">Karir</a></li>
+        <li><a href="#" class="hover:opacity-100">Blog</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4">Bantuan</h4>
+       <ul class="space-y-2 text-sm opacity-75">
+        <li><a href="#" class="hover:opacity-100">FAQ</a></li>
+        <li><a href="#" class="hover:opacity-100">Hubungi Kami</a></li>
+        <li><a href="#" class="hover:opacity-100">Lacak Pesanan</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-semibold mb-4">Ikuti Kami</h4>
+       <div class="flex space-x-3"><button class="icon-btn w-10 h-10 rounded-full flex items-center justify-center"> <span>📘</span> </button> <button class="icon-btn w-10 h-10 rounded-full flex items-center justify-center"> <span>📷</span> </button> <button class="icon-btn w-10 h-10 rounded-full flex items-center justify-center"> <span>🐦</span> </button>
+       </div>
+      </div>
+     </div>
+     <div class="border-t pt-8 text-center opacity-75 text-sm">
+      <p>© 2024 ShopHub. Semua hak dilindungi undang-undang.</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+        const defaultConfig = {
+            background_color: '#f9fafb',
+            surface_color: '#ffffff',
+            text_color: '#1f2937',
+            primary_action_color: '#3b82f6',
+            secondary_action_color: '#8b5cf6',
+            font_family: 'Inter',
+            font_size: 16,
+            store_name: 'ShopHub',
+            store_tagline: 'Belanja Mudah & Cepat',
+            hero_title: 'Temukan Produk Terbaik untuk Anda',
+            hero_subtitle: 'Koleksi produk pilihan dengan kualitas terjamin, harga terjangkau, dan pengiriman cepat ke seluruh Indonesia',
+            hero_cta: 'Mulai Belanja',
+            products_title: 'Produk Unggulan',
+            features_title: 'Mengapa Belanja di Sini?',
+            newsletter_title: 'Dapatkan Penawaran Khusus',
+            newsletter_text: 'Berlangganan newsletter kami dan dapatkan diskon hingga 20% untuk pembelian pertama Anda'
+        };
+
+        // Sample products data
+        const products = [
+            { id: 1, name: 'Wireless Headphones', price: 'Rp 299.000', badge: 'BEST SELLER', emoji: '🎧' },
+            { id: 2, name: 'Smart Watch', price: 'Rp 1.499.000', badge: 'NEW', emoji: '⌚' },
+            { id: 3, name: 'Laptop Sleeve', price: 'Rp 149.000', badge: 'SALE', emoji: '💼' },
+            { id: 4, name: 'Phone Stand', price: 'Rp 79.000', badge: '', emoji: '📱' },
+            { id: 5, name: 'Coffee Mug', price: 'Rp 59.000', badge: '', emoji: '☕' },
+            { id: 6, name: 'Desk Lamp', price: 'Rp 189.000', badge: 'NEW', emoji: '💡' },
+            { id: 7, name: 'Backpack', price: 'Rp 349.000', badge: '', emoji: '🎒' },
+            { id: 8, name: 'Sunglasses', price: 'Rp 199.000', badge: 'SALE', emoji: '🕶️' }
+        ];
+
+        let cartCount = 0;
+
+        function renderProducts(config) {
+            const grid = document.getElementById('products-grid');
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+            
+            grid.innerHTML = products.map(product => `
+                <div class="product-card rounded-xl overflow-hidden relative" style="background-color: ${surfaceColor}; color: ${textColor};">
+                    ${product.badge ? `<div class="badge" style="background-color: ${primaryColor}; color: white;">${product.badge}</div>` : ''}
+                    <div class="p-6">
+                        <div class="text-6xl mb-4 text-center">${product.emoji}</div>
+                        <h3 class="font-semibold text-lg mb-2">${product.name}</h3>
+                        <p class="text-2xl font-bold mb-4" style="color: ${primaryColor};">${product.price}</p>
+                        <button onclick="addToCart()" class="w-full py-3 rounded-lg font-semibold transition-all duration-300" style="background-color: ${primaryColor}; color: white;">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart() {
+            cartCount++;
+            const cartCountEl = document.getElementById('cart-count');
+            cartCountEl.textContent = cartCount;
+            
+            showToast('Produk berhasil ditambahkan ke keranjang!');
+        }
+
+        function showToast(message) {
+            const config = window.elementSdk?.config || defaultConfig;
+            const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.style.backgroundColor = primaryColor;
+            toast.style.color = 'white';
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        async function onConfigChange(config) {
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+            const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+            const fontFamily = config.font_family || defaultConfig.font_family;
+            const baseFontSize = config.font_size || defaultConfig.font_size;
+
+            const app = document.getElementById('app');
+            app.style.backgroundColor = backgroundColor;
+            app.style.color = textColor;
+            app.style.fontFamily = `${fontFamily}, sans-serif`;
+
+            const navbar = document.getElementById('navbar');
+            navbar.style.backgroundColor = surfaceColor;
+            navbar.style.color = textColor;
+
+            const navLinks = navbar.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.style.color = textColor;
+            });
+
+            const iconBtns = navbar.querySelectorAll('.icon-btn');
+            iconBtns.forEach(btn => {
+                btn.style.color = textColor;
+            });
+
+            const cartBadge = document.getElementById('cart-count');
+            cartBadge.style.backgroundColor = primaryColor;
+            cartBadge.style.color = 'white';
+
+            document.getElementById('store-name').textContent = config.store_name || defaultConfig.store_name;
+            document.getElementById('store-name').style.fontSize = `${baseFontSize * 1.25}px`;
+            
+            document.getElementById('store-tagline').textContent = config.store_tagline || defaultConfig.store_tagline;
+            document.getElementById('store-tagline').style.fontSize = `${baseFontSize * 0.75}px`;
+
+            const heroSection = document.getElementById('home');
+            heroSection.style.backgroundColor = surfaceColor;
+
+            const heroTitle = document.getElementById('hero-title');
+            heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+            heroTitle.style.fontSize = `${baseFontSize * 2.5}px`;
+            heroTitle.style.color = textColor;
+
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+            heroSubtitle.style.fontSize = `${baseFontSize * 1.125}px`;
+            heroSubtitle.style.color = textColor;
+
+            document.getElementById('hero-cta').textContent = config.hero_cta || defaultConfig.hero_cta;
+
+            const heroCTABtn = document.getElementById('hero-cta-btn');
+            heroCTABtn.style.backgroundColor = primaryColor;
+            heroCTABtn.style.color = 'white';
+
+            const heroSvg = heroSection.querySelector('svg');
+            heroSvg.style.color = primaryColor;
+
+            const categoryChips = document.querySelectorAll('.category-chip');
+            categoryChips.forEach(chip => {
+                chip.style.backgroundColor = surfaceColor;
+                chip.style.color = textColor;
+                chip.style.border = `2px solid ${primaryColor}`;
+            });
+
+            const productsSection = document.getElementById('products');
+            productsSection.style.backgroundColor = backgroundColor;
+
+            const productsTitle = document.getElementById('products-title');
+            productsTitle.textContent = config.products_title || defaultConfig.products_title;
+            productsTitle.style.fontSize = `${baseFontSize * 2}px`;
+            productsTitle.style.color = textColor;
+
+            renderProducts(config);
+
+            const featuresSection = document.getElementById('features');
+            featuresSection.style.backgroundColor = surfaceColor;
+
+            const featuresTitle = document.getElementById('features-title');
+            featuresTitle.textContent = config.features_title || defaultConfig.features_title;
+            featuresTitle.style.fontSize = `${baseFontSize * 2}px`;
+            featuresTitle.style.color = textColor;
+
+            const newsletterSection = document.getElementById('newsletter');
+            newsletterSection.style.backgroundColor = backgroundColor;
+
+            const newsletterBox = newsletterSection.querySelector('.rounded-2xl');
+            newsletterBox.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+            newsletterBox.style.color = 'white';
+
+            const newsletterTitle = document.getElementById('newsletter-title');
+            newsletterTitle.textContent = config.newsletter_title || defaultConfig.newsletter_title;
+            newsletterTitle.style.fontSize = `${baseFontSize * 2}px`;
+
+            const newsletterText = document.getElementById('newsletter-text');
+            newsletterText.textContent = config.newsletter_text || defaultConfig.newsletter_text;
+            newsletterText.style.fontSize = `${baseFontSize * 1.125}px`;
+
+            const newsletterInput = document.querySelector('#newsletter-form input');
+            newsletterInput.style.borderColor = 'white';
+            newsletterInput.style.color = textColor;
+
+            const newsletterBtn = document.querySelector('#newsletter-form button');
+            newsletterBtn.style.backgroundColor = 'white';
+            newsletterBtn.style.color = primaryColor;
+
+            const footer = document.querySelector('footer');
+            footer.style.backgroundColor = surfaceColor;
+            footer.style.color = textColor;
+
+            const footerBorder = footer.querySelector('.border-t');
+            footerBorder.style.borderColor = textColor;
+            footerBorder.style.opacity = '0.2';
+
+            const socialBtns = footer.querySelectorAll('.icon-btn');
+            socialBtns.forEach(btn => {
+                btn.style.backgroundColor = primaryColor;
+                btn.style.color = 'white';
+            });
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            config.background_color = value;
+                            window.elementSdk.setConfig({ background_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            config.surface_color = value;
+                            window.elementSdk.setConfig({ surface_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            config.text_color = value;
+                            window.elementSdk.setConfig({ text_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            config.primary_action_color = value;
+                            window.elementSdk.setConfig({ primary_action_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            config.secondary_action_color = value;
+                            window.elementSdk.setConfig({ secondary_action_color: value });
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: {
+                    get: () => config.font_family || defaultConfig.font_family,
+                    set: (value) => {
+                        config.font_family = value;
+                        window.elementSdk.setConfig({ font_family: value });
+                    }
+                },
+                fontSizeable: {
+                    get: () => config.font_size || defaultConfig.font_size,
+                    set: (value) => {
+                        config.font_size = value;
+                        window.elementSdk.setConfig({ font_size: value });
+                    }
+                }
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ['store_name', config.store_name || defaultConfig.store_name],
+                ['store_tagline', config.store_tagline || defaultConfig.store_tagline],
+                ['hero_title', config.hero_title || defaultConfig.hero_title],
+                ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+                ['hero_cta', config.hero_cta || defaultConfig.hero_cta],
+                ['products_title', config.products_title || defaultConfig.products_title],
+                ['features_title', config.features_title || defaultConfig.features_title],
+                ['newsletter_title', config.newsletter_title || defaultConfig.newsletter_title],
+                ['newsletter_text', config.newsletter_text || defaultConfig.newsletter_text]
+            ]);
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
+
+        // Newsletter form
+        const newsletterForm = document.getElementById('newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Terima kasih! Anda telah berlangganan newsletter kami.');
+            newsletterForm.reset();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initialize products
+        renderProducts(defaultConfig);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c8702319259f8ca',t:'MTc3MDE3NDk3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
