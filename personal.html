@@ -1,118 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Submit</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-        form {
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #message {
-            margin-top: 10px;
-            padding: 10px;
-            text-align: center;
-            display: none;
-        }
-        .success {
-            color: green;
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 4px;
-        }
-        .error {
-            color: red;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 4px;
-        }
-    </style>
+    <title>Personal</title>
+    <script>
+        fetch('https://script.google.com/macros/s/AKfycbxuHzMSI9qJ-j-JDEN-eXSK07PQqA6v_kcsM8E3Mts8327XHOu5XwTVv2CIxr2FbHGF/exec')
+            .then(response => response.json())
+            .then(data => console.log(data));
+    </script>
 </head>
 <body>
-    <h1>Hubungi Kami</h1>
-    <form id="contactForm">
-        <label for="nama">Nama:</label>
-        <input type="text" id="nama" name="nama" required>
-        
-        <label for="kontak">HP/Email:</label>
-        <input type="text" id="kontak" name="kontak" required>
-        
-        <label for="pesan">Pesan:</label>
-        <textarea id="pesan" name="pesan" rows="5" required></textarea>
-        
-        <button type="submit">Submit</button>
-    </form>
-    
-    <div id="message"></div>
-
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            var formData = {
-                nama: document.getElementById('nama').value,
-                kontak: document.getElementById('kontak').value,
-                pesan: document.getElementById('pesan').value
-            };
-            
-            // Send data to Google Apps Script
-            fetch('https://script.google.com/macros/s/AKfycbw3yKMbVp17tkwWJE9OrgsL6ugDX0XPymKTzJyR21vA8BQXTCOeOaZ3s6PL6c_UZPTG/exec', {
-                method: 'POST',
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                var messageDiv = document.getElementById('message');
-                messageDiv.style.display = 'block';
-                if (data.status === 'success') {
-                    messageDiv.textContent = 'Pesan berhasil dikirim!';
-                    messageDiv.className = 'success';
-                    document.getElementById('contactForm').reset();
-                } else {
-                    messageDiv.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
-                    messageDiv.className = 'error';
-                }
-            })
-            .catch(error => {
-                var messageDiv = document.getElementById('message');
-                messageDiv.style.display = 'block';
-                messageDiv.textContent = 'Error: ' + error;
-                messageDiv.className = 'error';
-            });
-        });
-    </script>
+    <h1>Welcome to Personal Page</h1>
 </body>
 </html>
