@@ -1,53 +1,27 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Formulir Kontak</h1>
-        <form id="contactForm" class="bg-white p-6 rounded shadow-md">
-            <label class="block mb-2">
-                <span class="text-gray-700">Nama</span>
-                <input type="text" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
-            </label>
-            <label class="block mb-2">
-                <span class="text-gray-700">Email</span>
-                <input type="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
-            </label>
-            <label class="block mb-2">
-                <span class="text-gray-700">Pesan</span>
-                <textarea name="message" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required></textarea>
-            </label>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                Kirim
-            </button>
-            <div id="loading" class="hidden mt-4">Sedang mengirim...</div>
-            <div id="feedback" class="mt-2"></div>
-        </form>
-    </div>
-    <script>
-        document.getElementById('contactForm').onsubmit = function (event) {
-            event.preventDefault();
-            document.getElementById('loading').classList.remove('hidden');
-            const formData = new FormData(this);
-            fetch('https://script.google.com/macros/s/AKfycbw3yKMbVp17tkwWJE9OrgsL6ugDX0XPymKTzJyR21vA8BQXTCOeOaZ3s6PL6c_UZPTG/exec', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('loading').classList.add('hidden');
-                document.getElementById('feedback').innerText = 'Pesan berhasil dikirim!';
-            })
-            .catch((error) => {
-                document.getElementById('loading').classList.add('hidden');
-                document.getElementById('feedback').innerText = 'Terjadi kesalahan, silahkan coba lagi.';
-            });
-        };
-    </script>
-</body>
-</html>
+// This code assumes that you have a Google Apps Script web app deployed.
+// Replace the URL below with your deployed web app URL
+const url = 'https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec';
+
+function handleSubmit(form) {
+    const formData = new FormData(form);
+    const options = {
+        method: 'POST',
+        body: formData,
+        mode: 'cors',
+        credentials: 'include'
+    };
+
+    fetch(url, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
