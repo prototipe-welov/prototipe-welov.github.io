@@ -1,27 +1,15 @@
-// This code assumes that you have a Google Apps Script web app deployed.
-// Replace the URL below with your deployed web app URL
-const url = 'https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec';
-
-function handleSubmit(form) {
-    const formData = new FormData(form);
-    const options = {
-        method: 'POST',
-        body: formData,
-        mode: 'cors',
-        credentials: 'include'
-    };
-
-    fetch(url, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submit</title>
+</head>
+<body>
+    <form action="YOUR_GOOGLE_APPS_SCRIPT_URL" method="POST">
+        <label for="inputField">Input:</label>
+        <input type="text" id="inputField" name="inputField" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
