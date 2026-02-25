@@ -1,166 +1,262 @@
-<!DOCTYPE html>
-<html lang="id">
+<!doctype html>
+<html lang="id" class="h-full">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Pribadi</title>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+body{font-family:'Outfit',sans-serif;}
+.gradient-animate{
+background:linear-gradient(270deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);
+background-size:800% 800%;
+animation:gradientShift 15s ease infinite;
 }
-
-body {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: white;
-  scroll-behavior: smooth;
+@keyframes gradientShift{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
-
-header {
-  padding: 40px 20px;
-  text-align: center;
+.card-3d{transition:.4s}
+.card-3d:hover{transform:translateY(-10px)}
+.timeline-item{position:relative;padding-left:40px;}
+.timeline-item::before{
+content:'';position:absolute;left:0;top:8px;
+width:14px;height:14px;border-radius:50%;
+border:3px solid currentColor;background:white;
 }
-
-header h1 {
-  font-size: 36px;
-  font-weight: 600;
+.timeline-item::after{
+content:'';position:absolute;left:6px;top:24px;
+width:2px;height:calc(100% + 20px);
+background:currentColor;opacity:.3;
 }
-
-header p {
-  opacity: 0.8;
-  margin-top: 10px;
-}
-
-section {
-  padding: 60px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.card {
-  background: rgba(255,255,255,0.1);
-  padding: 30px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  margin-bottom: 30px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-h2 {
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-}
-
-button {
-  margin-top: 15px;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: #00c6ff;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #0072ff;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  opacity: 0.6;
-}
+.timeline-item:last-child::after{display:none;}
 </style>
 </head>
 
-<body>
+<body class="h-full">
 
-<header>
-  <h1>Halo, Saya Pemilik Website Ini 👋</h1>
-  <p>Selamat datang di website pribadi saya</p>
-</header>
+<!-- HERO -->
+<section class="min-h-screen flex items-center justify-center gradient-animate text-white text-center px-6">
+<div class="max-w-3xl">
 
-<section>
-  <div class="card">
-    <h2>Tentang Saya</h2>
-    <p>
-      Saya adalah seseorang yang sedang belajar web development dan membangun
-      berbagai prototype website menggunakan GitHub Pages dan Google Apps Script.
-      Website ini adalah bagian dari proyek pengembangan saya.
-    </p>
-  </div>
+<div class="w-40 h-40 mx-auto rounded-full bg-white text-7xl flex items-center justify-center mb-6 shadow-xl">
+👨‍💻
+</div>
 
-  <div class="card">
-    <h2>Keahlian</h2>
-    <p>✔ HTML & CSS</p>
-    <p>✔ GitHub Pages</p>
-    <p>✔ Google Apps Script</p>
-    <p>✔ Dasar Networking</p>
-  </div>
+<h1 class="text-5xl font-bold mb-4">
+NAMA PEMILIK
+</h1>
 
-  <div class="card">
-    <h2>Hubungi Saya</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<h2 class="text-xl font-medium mb-6">
+Lorem ipsum dolor sit amet consectetur
+</h2>
 
-    <form id="contactForm">
-      <input type="text" name="nama" placeholder="Nama Anda" required>
-      <input type="email" name="email" placeholder="Email Anda" required>
-      <textarea name="pesan" rows="4" placeholder="Tulis pesan Anda..." required></textarea>
-      <button type="submit">Kirim Pesan</button>
-    </form>
+<p class="mb-8 opacity-90 leading-relaxed">
+Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.
+</p>
 
-    <p id="status" style="margin-top:10px;"></p>
-  </div>
+<a href="#contact" class="bg-white text-gray-800 px-8 py-4 rounded-full font-semibold">
+Hubungi Saya 💌✨
+</a>
+
+</div>
 </section>
 
-<footer>
-  © 2026 Website Pribadi | Dibuat dengan semangat belajar 🚀
+<!-- ABOUT -->
+<section class="py-20 px-6">
+<div class="max-w-5xl mx-auto">
+
+<h2 class="text-3xl font-bold mb-8 text-center">
+Tentang Saya
+</h2>
+
+<p class="mb-12 leading-relaxed text-center max-w-3xl mx-auto">
+Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+
+<h3 class="text-xl font-semibold mb-6 text-center">
+Keahlian
+</h3>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+<div>Lorem ipsum dolor</div>
+<div>Sit amet consectetur</div>
+<div>Adipiscing elit sed</div>
+<div>Do eiusmod tempor</div>
+<div>Incididunt ut labore</div>
+<div>Dolore magna aliqua</div>
+<div>Ut enim ad minim</div>
+<div>Veniam quis nostrud</div>
+</div>
+
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="py-20 px-6 bg-gray-50">
+<div class="max-w-6xl mx-auto">
+
+<h2 class="text-3xl font-bold mb-12 text-center">
+Portofolio
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="card-3d bg-white p-8 rounded-xl shadow text-center">
+<div class="text-5xl mb-4">🎨</div>
+<h3 class="font-semibold mb-3">
+Lorem ipsum dolor sit amet
+</h3>
+<p class="text-sm opacity-70">
+Lorem ipsum dolor sit amet consectetur adipiscing elit
+</p>
+</div>
+
+<div class="card-3d bg-white p-8 rounded-xl shadow text-center">
+<div class="text-5xl mb-4">📱</div>
+<h3 class="font-semibold mb-3">
+Lorem ipsum dolor sit amet
+</h3>
+<p class="text-sm opacity-70">
+Lorem ipsum dolor sit amet consectetur adipiscing elit
+</p>
+</div>
+
+<div class="card-3d bg-white p-8 rounded-xl shadow text-center">
+<div class="text-5xl mb-4">🌐</div>
+<h3 class="font-semibold mb-3">
+Lorem ipsum dolor sit amet
+</h3>
+<p class="text-sm opacity-70">
+Lorem ipsum dolor sit amet consectetur adipiscing elit
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="py-20 px-6">
+<div class="max-w-3xl mx-auto">
+
+<h2 class="text-3xl font-bold mb-12 text-center">
+Lorem Ipsum
+</h2>
+
+<div class="space-y-10">
+
+<div class="timeline-item">
+<h3 class="font-semibold">
+Lorem ipsum dolor sit amet
+</h3>
+<p class="opacity-70">
+Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.
+</p>
+</div>
+
+<div class="timeline-item">
+<h3 class="font-semibold">
+Lorem ipsum dolor sit amet
+</h3>
+<p class="opacity-70">
+Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 px-6 bg-gray-50">
+<div class="max-w-3xl mx-auto">
+
+<h2 class="text-3xl font-bold mb-6">
+Mari Bekerja Sama
+</h2>
+
+<p class="mb-10 opacity-70">
+Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+</p>
+
+<form id="contact-form" class="space-y-6">
+
+<div>
+<label class="block mb-2 font-medium">Nama</label>
+<input type="text" id="name" required class="w-full px-4 py-3 border rounded-lg">
+</div>
+
+<div>
+<label class="block mb-2 font-medium">Email / Nomor Telepon</label>
+<input type="text" id="email" required class="w-full px-4 py-3 border rounded-lg">
+</div>
+
+<div>
+<label class="block mb-2 font-medium">Pesan</label>
+<textarea id="message" rows="5" required class="w-full px-4 py-3 border rounded-lg"></textarea>
+</div>
+
+<div id="form-status" class="hidden text-sm font-medium"></div>
+
+<button id="submit-btn" type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-lg">
+Kirim Pesan
+</button>
+
+</form>
+
+</div>
+</section>
+
+<footer class="py-6 text-center">
+© 2026 WELOV, membuat web dengan cinta 💗
 </footer>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbx3GLWlK5IxbL6jHQlk8m3vFAYhYjB30C4QUFOvXHiOC_dfsnpqVKD3x-pE1aexan84/exec";
+const scriptURL="https://script.google.com/macros/s/AKfycbxaaP1s_o3kbkuFf4YlmBYOBS3il7PUgj6nNWloR7wYbFyyeqdjuQJa37sL5a7edtCy/exec";
+const form=document.getElementById("contact-form");
+const statusDiv=document.getElementById("form-status");
+const submitBtn=document.getElementById("submit-btn");
 
-const form = document.getElementById("contactForm");
-const status = document.getElementById("status");
+let isSending=false;
 
-form.addEventListener("submit", e => {
-  e.preventDefault();
+form.addEventListener("submit",function(e){
+e.preventDefault();
+if(isSending) return;
 
-  const formData = new FormData(form);
+isSending=true;
+submitBtn.disabled=true;
 
-  fetch(scriptURL, {
-    method: "POST",
-    body: formData
-  })
-  .then(response => response.text())
-  .then(result => {
-    status.innerHTML = "Pesan berhasil dikirim ✅";
-    form.reset();
-  })
-  .catch(error => {
-    status.innerHTML = "Terjadi kesalahan ❌";
-  });
+statusDiv.className="text-blue-600 text-sm font-medium";
+statusDiv.textContent="Mengirim pesan...";
+statusDiv.classList.remove("hidden");
+
+fetch(scriptURL,{
+method:"POST",
+body:new URLSearchParams({
+nama:name.value,
+email:email.value,
+pesan:message.value
+})
+})
+.then(()=>{ 
+statusDiv.className="text-green-600 text-sm font-medium";
+statusDiv.textContent="✓ Pesan berhasil dikirim!";
+form.reset();
+})
+.catch(()=>{
+statusDiv.className="text-red-600 text-sm font-medium";
+statusDiv.textContent="✕ Gagal mengirim pesan.";
+})
+.finally(()=>{
+isSending=false;
+submitBtn.disabled=false;
+});
 });
 </script>
 
